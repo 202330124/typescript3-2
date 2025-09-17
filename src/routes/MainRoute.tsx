@@ -2,9 +2,12 @@
 // 만드는 이유? 관리하기 쉽도록 하기 위해서
 
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../components/Home";
-import Settings from "../components/Settings";
+import Home from "../screens/Home";
+import Settings from "../screens/Settings";
 import Layout from "../layout/Layout";
+import Community from "../screens/Community";
+import Explorer from "../screens/Explorer";
+import Profile from "../screens/Profile";
 
 // Main 페이지들이 구성된 분배기(Router)
 // export: 외부에서 사용 가능 허가
@@ -18,11 +21,10 @@ export const router = createBrowserRouter([{
     // 하위 페이지 구성 ex) <Routes />
     children: [
         // React에서 {}는 Object, 객체를 의미
-        {
-            path: "", element: <Home />
-        },
-        {
-            path: "settings", element: <Settings />
-        }
+        { path: "", element: <Home /> },
+        { path: "settings", element: <Settings /> },
+        { path: "profile", element: <Profile /> },
+        { path: "explorer", element: <Explorer /> },
+        { path: "community", element: <Community /> }
     ]
 }]);

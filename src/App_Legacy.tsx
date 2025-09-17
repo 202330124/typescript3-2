@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Home from './components/Home';
-import Settings from './components/Settings';
+import Home from './screens/Home';
+import Settings from './screens/Settings';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
