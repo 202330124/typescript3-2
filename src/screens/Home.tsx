@@ -1,21 +1,27 @@
 import styled from "styled-components";
+import { getAuth } from "../contexts/AuthContext";
 
 const Container = styled.div``;
 const Title = styled.h1`
-    color: blue;
-    font-size: 120px;
+  color: blue;
+  font-size: 120px;
 `;
 const Desc = styled.p`
-    color: green;
-    font-size: 50px;
+  color: green;
+  font-size: 50px;
 `;
 
 const Home = () => {
-    return <Container>
-        <Title>Home</Title>
-        <Desc>This is Home page</Desc>
+  // Auth 인증 관련된 정보를 불러오고 싶다. feat.Provider
+  const auth = getAuth();
+
+  return (
+    <Container>
+      <Title>Home</Title>
+      <Desc>This is Home page</Desc>
     </Container>
-}
+  );
+};
 
 export default Home;
 

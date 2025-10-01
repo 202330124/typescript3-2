@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import SVGIcons from "./SVGIcons";
 
 const Container = styled.div`
   background-color: red;
@@ -14,7 +15,10 @@ type Props = {
 const NaviButton = ({ name }: Props) => {
   return (
     <Container>
-      <Link to={name === "home" ? "" : name}>{name}</Link>
+      <Link to={name === "home" ? "" : name}>
+        <SVGIcons name={name} />
+        {name}
+      </Link>
     </Container>
   );
 };
