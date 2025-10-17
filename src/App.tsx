@@ -1,11 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Home from './screens/Home';
-import Settings from './screens/Settings';
-import { BrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
-import { router } from './routes/MainRoute';
-import styled from 'styled-components';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./screens/Home";
+import Settings from "./screens/Settings";
+import { BrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import { router } from "./routes/MainRoute";
+import styled from "styled-components";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const Container = styled.div`
   height: 100vh;
@@ -17,9 +18,11 @@ const Container = styled.div`
 
 function App() {
   return (
-    <Container>
-      <RouterProvider router={router} />
-    </Container>
+    <AuthProvider>
+      <Container>
+        <RouterProvider router={router} />
+      </Container>
+    </AuthProvider>
   );
 }
 

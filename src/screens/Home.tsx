@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getAuth } from "../contexts/AuthContext";
+import { useMyAuth } from "../contexts/AuthContext";
 
 const Container = styled.div``;
 const Title = styled.h1`
@@ -13,7 +13,7 @@ const Desc = styled.p`
 
 const Home = () => {
   // Auth 인증 관련된 정보를 불러오고 싶다. feat.Provider
-  const auth = getAuth();
+  const auth = useMyAuth();
 
   return (
     <Container>
