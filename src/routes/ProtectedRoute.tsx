@@ -7,6 +7,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   // currentUser의 정보를 AuthContext를 통해 가져옴
   // const { currentUser } = useMyAuth();
 
+  // [@Test]를 위해서 로그인 시켜놓음
   const currentUser = null;
 
   if (currentUser) {

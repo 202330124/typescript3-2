@@ -10,14 +10,16 @@ type MyUser = {
 // Type: Auth 인증 관련 Property
 type AuthType = {
   currentUser: MyUser | null;
-  signIn: () => void;
+  // 10.29 signIn: () -> (id: string, password: string) 추가
+  signIn: (id: string, password: string) => void;
   signOut: () => void;
 };
 
 // 1. Context 생성
 const AuthContext = createContext<AuthType>({
   currentUser: null,
-  signIn: () => {},
+  // 10.29 signIn: () -> (id: string, password: string) 추가
+  signIn: (id: string, password: string) => {},
   signOut: () => {},
 });
 
@@ -29,11 +31,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // 2-2. Context를 통해 넘겨줄 Property에게 실제 데이터를 할당 / 불러오기 / 계산
   // 2-2a. 로그인 함수 만들기
-  const signIn = (/*id: string, password: string*/) => {
+  const signIn = (id: string, password: string) => {
     // Input Code ...
     // Server랑 통신해서 로그인 여부 진행(id, pw)
     try {
       // A. 서버 통신, 로그인 성공!
+
+      console.log("로그인!");
 
       return true;
     } catch (e) {
