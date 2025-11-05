@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useMyAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import LogoImg from "../assets/img/Project_Logo.png";
 
 // 화면 안에 Style을 가진 미니 컴포넌트
 const Container = styled.div`
@@ -8,21 +10,72 @@ const Container = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
   padding: 50px;
+  /* 브라우저 크기에 따라 배치 열 변경 */
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 
   background-color: ivory;
 `;
 
 // 왼쪽 사이드
-const Logo = styled.img``;
+const Logo = styled.img`
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  max-width: 300px;
+`;
 
 // 오른쪽 사이드
-const SignInBox = styled.div``;
-const Form = styled.form``;
-const FormTitle = styled.p``;
-const Input = styled.input``;
+const SignInBox = styled.div`
+  background-color: #a8ffa8;
+  width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+`;
+
+const FormTitle = styled.p`
+  font-size: 12px;
+  color: #2c2c2c;
+`;
+
+const Input = styled.input<{ active?: boolean }>`
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+
+  /* placeholder의 텍스트만 변경 */
+  &::placeholder {
+    font-size: 12px;
+  }
+
+  /* type이 submit인 input 태그의 스타일만 변경 */
+  &[type="submit"] {
+    cursor: pointer;
+    /* 마우스 올리면(호버링) 투명도 변화 */
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  /* 로딩 중인 경우에 버튼 색상 변경 */
+  background-color: ${(props) => (props.active ? "blue" : "white")};
+`;
 
 // 버튼들
 const Footer = styled.div``;
@@ -30,6 +83,22 @@ const Btn = styled.div``;
 
 // Type
 type InputFieldType = "email" | "password";
+
+// 임의의 시간동안 대기하는 함수
+// time: 대기시간(ms, 1000ms = 1초)
+// resolve: async 함수에서 반환하는 값
+/**
+ *
+ * @param time 대기시간(ms, 1000ms = 1초)
+ * @returns resolve: async 함수에서 반환하는 값
+ */
+const waitForTime = async (time: number): Promise<string> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("success");
+    }, time);
+  });
+};
 
 // 로그인 화면을 구현할 컴포넌트
 const SignInScreen = () => {
@@ -39,6 +108,9 @@ const SignInScreen = () => {
 
   // Loading 상태
   const [loading, setLoading] = useState<boolean>(false);
+
+  // route 등록된 페이지 이동을 위한 Hook
+  const navi = useNavigate();
 
   // 로그인 유저 상태 useMyAuth 훅에서 가져온다
   const { currentUser, signIn } = useMyAuth();
@@ -90,13 +162,23 @@ const SignInScreen = () => {
       // await signinServer(email, password);
 
       // [@Test] 3초 이후에 로그인 여부 알려줌
-      setTimeout(() => {
-        // 로그인 성공 -> 로그인 처리
+      const result = await waitForTime(3000);
+
+      // 만일 성공했으면
+      if (result === "success") {
+        // 로그인 성공
         signIn(email, password);
 
-        // 로딩 종료
-        setLoading(false);
-      }, 3000);
+        // 로그인 성공 후에 -> 메인 화면으로 이동
+        const moveToURL = "/";
+        navi(moveToURL);
+      } else {
+        // 로그인 실패
+        // 로그인 실패 후에 -> 메시지 띄우기 or 이메일, 비밀번호 입력 초기화
+        alert("로그인 실패! 아이디 또는 비밀번호를 확인하세요.");
+        setEmail("");
+        setPassword("");
+      }
     } catch (e) {
       // B. 로그인 실패(etc.. 잘못된 ID, 잘못된 비밀번호, 인터넷 문제)
     }
@@ -108,7 +190,7 @@ const SignInScreen = () => {
   return (
     <Container>
       {/* 왼쪽(L) 사이드 */}
-      <Logo style={{ width: 100, height: 100, backgroundColor: "green" }} />
+      <Logo src={LogoImg} />
 
       {/* 오른쪽(R) 사이드 */}
       <SignInBox>
@@ -130,6 +212,7 @@ const SignInScreen = () => {
           />
           {/* 로그인 버튼 역할의 Input */}
           <Input
+            active={loading}
             type="submit"
             value={loading ? "로그인 중..." : "로그인하기"}
           />

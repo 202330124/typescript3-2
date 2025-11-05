@@ -8,7 +8,7 @@ import Layout from "../layout/Layout";
 import Community from "../screens/Community";
 import Explorer from "../screens/Explorer";
 import Profile from "../screens/Profile";
-import SignInScreen from "../screens/SignScreen";
+import SignInScreen from "../screens/SignInScreen";
 import ProtectedRoute from "./ProtectedRoute";
 
 // Main 페이지들이 구성된 분배기(Router)

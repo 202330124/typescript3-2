@@ -5,10 +5,10 @@ import { useMyAuth } from "../contexts/AuthContext";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   // currentUser의 정보를 AuthContext를 통해 가져옴
-  // const { currentUser } = useMyAuth();
+  const { currentUser } = useMyAuth();
 
   // [@Test]를 위해서 로그인 시켜놓음
-  const currentUser = null;
+  // const currentUser = null;
 
   if (currentUser) {
     // A. 로그인 된 상태
