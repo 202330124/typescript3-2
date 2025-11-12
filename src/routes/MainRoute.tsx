@@ -11,6 +11,7 @@ import Profile from "../screens/Profile";
 import SignInScreen from "../screens/SignInScreen";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUpScreen from "../screens/SignUpScreen";
+import GPTScreen from "../screens/GPTScreen";
 
 // Main 페이지들이 구성된 분배기(Router)
 // export: 외부에서 사용 가능 허가
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
       { path: "explorer", element: <Explorer /> },
       { path: "community", element: <Community /> },
+      { path: "gpt", element: <GPTScreen /> },
     ],
   },
 

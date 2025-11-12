@@ -77,6 +77,7 @@ const Layout = () => {
         <NaviButton name="explorer" />
         <NaviButton name="community" />
         <NaviButton name="profile" />
+        <NaviButton name="gpt" />
         <Footer>
           <Menu
             onClick={() => {
