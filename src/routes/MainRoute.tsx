@@ -10,6 +10,7 @@ import Explorer from "../screens/Explorer";
 import Profile from "../screens/Profile";
 import SignInScreen from "../screens/SignInScreen";
 import ProtectedRoute from "./ProtectedRoute";
+import SignUpScreen from "../screens/SignUpScreen";
 
 // Main 페이지들이 구성된 분배기(Router)
 // export: 외부에서 사용 가능 허가
@@ -42,5 +43,9 @@ export const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignInScreen />,
+  },
+  {
+    path: "/signup",
+    element: <SignUpScreen />,
   },
 ]);

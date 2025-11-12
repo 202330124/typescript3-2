@@ -19,7 +19,7 @@ type AuthType = {
 const AuthContext = createContext<AuthType>({
   currentUser: null,
   // 10.29 signIn: () -> (id: string, password: string) 추가
-  signIn: (id: string, password: string) => {},
+  signIn: () => {},
   signOut: () => {},
 });
 
@@ -65,7 +65,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // 1. 나의 UserToken
     try {
+      // ex, const token = SecureStorage.getItem("USER_TOKEN");
       // 2. UserToken 정보를 Server에 보낸다.
+      // serverApi('/api-loginvalid',{userId, token})
       // 3. Token의 유효성 검사 결과
       // 3-1. 유효: 검증완료 => 로그인이 되어있음
       setCurrentUser({

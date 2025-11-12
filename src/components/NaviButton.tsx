@@ -16,8 +16,9 @@ const NaviButton = ({ name }: Props) => {
   return (
     <Container>
       <Link to={name === "home" ? "" : name}>
-        <SVGIcons name={name} />
-        {name}
+        <div style={{ width: 30, height: 30 }}>
+          <SVGIcons name={name} />
+        </div>
       </Link>
     </Container>
   );
