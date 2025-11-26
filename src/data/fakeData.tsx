@@ -1,10 +1,10 @@
-import { faker } from "@faker-js/faker/.";
+import { faker } from "@faker-js/faker";
 
 // 랜덤으로 20개 서로 다른 Dataset 만들어짐
 faker.seed(20);
 
 // API로 주고 받을 Data 형식 / 형태 / 모습을 구현
-type FakeDataType = {
+export type FakeDataType = {
   key: string;
   title: string;
   description: string;

@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const MenuBox = styled.div`
-  background-color: ivory;
+  background-color: lightgrey;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -41,12 +41,24 @@ const Dot = styled.div`
   }
 `;
 
-const LoadingScreen = () => {
+type Props = {
+  theme: "light" | "dark";
+};
+
+const LoadingScreen = ({ theme = "dark" }: Props) => {
   return (
-    <Container>
-      <Dot />
-      <Dot />
-      <Dot />
+    <Container
+      style={{ backgroundColor: theme === "dark" ? "#000000" : "#ffffff" }}
+    >
+      <Dot
+        style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#000000" }}
+      />
+      <Dot
+        style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#000000" }}
+      />
+      <Dot
+        style={{ backgroundColor: theme === "dark" ? "#ffffff" : "#000000" }}
+      />
     </Container>
   );
 };

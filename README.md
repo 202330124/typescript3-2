@@ -10,3 +10,7 @@
 # install open ai
 
 ` npm install openai` ... open ai
+
+# install framer motion animatino package
+
+- `npm install framer-motion`

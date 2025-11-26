@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useMyAuth } from "../contexts/AuthContext";
+import Timeline from "../components/Timeline";
 
 const Container = styled.div``;
 const Title = styled.h1`
@@ -17,8 +18,9 @@ const Home = () => {
 
   return (
     <Container>
-      <Title>Home</Title>
-      <Desc>This is Home page</Desc>
+      {/* <Title>Home</Title>
+      <Desc>This is Home page</Desc> */}
+      <Timeline />
     </Container>
   );
 };
