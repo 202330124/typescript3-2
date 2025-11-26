@@ -14,3 +14,14 @@
 # install framer motion animatino package
 
 - `npm install framer-motion`
+
+# Hosting Domain Server (with Firebase)
+
+library installation
+
+- `npm install firebase`
+- `npm install -g firebase-tools`
+
+1. create firebase project
+2. add web app
+3. start Hosting
